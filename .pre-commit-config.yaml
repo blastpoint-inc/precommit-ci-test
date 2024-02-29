@@ -1,0 +1,128 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+default_install_hook_types:
+  - post-checkout
+  - post-merge
+  - pre-push
+default_stages:
+  - manual
+  - pre-push
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-docstring-first
+      - id: check-merge-conflict
+        args:
+          - '--assume-in-merge'
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
+      - id: name-tests-test
+      - id: no-commit-to-branch
+        stages:
+          - pre-push
+      - id: sort-simple-yaml
+        files: .pre-commit-config.yaml
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: pdm-sync
+        name: pdm-sync
+        entry: pdm sync
+        language: python
+        stages:
+          - post-checkout
+          - post-merge
+        always_run: true
+        pass_filenames: false
+      - id: pdm-lock-check
+        name: pdm-lock-check
+        entry: pdm lock --check
+        language: python
+        files: ^pyproject.toml$
+        pass_filenames: false
+      - id: mypy
+        name: mypy
+        entry: pdm run python -m mypy
+        language: system
+        types_or:
+          - python
+          - pyi
+        require_serial: true
+      - id: ruff
+        name: ruff
+        entry: pdm run python -m ruff check --force-exclude
+        language: system
+        types_or:
+          - python
+          - pyi
+        require_serial: true
+      - id: ruff-format
+        name: ruff-format
+        entry: pdm run python -m ruff format --force-exclude
+        language: system
+        types_or:
+          - python
+          - pyi
+        require_serial: true
+      - id: toml-sort
+        name: toml-sort
+        entry: pdm run toml-sort
+        language: system
+        types:
+          - toml
+      - id: forbidden-files
+        name: forbidden files
+        entry: found Copier update rejection files; review them and remove them
+        language: fail
+        files: \.rej$
+  # - repo: https://github.com/pre-commit/pre-commit-hooks
+  #   rev: v4.5.0
+  #   hooks:
+  #     - id: check-added-large-files
+  #     - id: check-shebang-scripts-are-executable
+  #     - id: check-symlinks
+  #     - id: check-docstring-first
+  #     - id: check-toml
+  #     - id: check-yaml
+  #     - id: destroyed-symlinks
+  #     - id: end-of-file-fixer
+  #     - id: forbid-new-submodules
+  #     - id: trailing-whitespace
+  #     - id: name-tests-test
+  #     - id: sort-simple-yaml
+  #       files: .pre-commit-config.yaml
+  # - repo: local
+  #   hooks:
+  #     - id: ruff-format
+  #       name: ruff-format
+  #       entry: pdm run python -m ruff format --force-exclude
+  #       language: system
+  #       types_or:
+  #         - python
+  #         - pyi
+  #       require_serial: true
+  #     - id: toml-sort
+  #       name: toml-sort
+  #       entry: pdm run toml-sort
+  #       language: system
+  #       types:
+  #         - toml
+  #     # - id: pdm-sync
+  #     #   name: pdm-sync
+  #     #   entry: pdm sync
+  #     #   language: python
+  #     #   stages:
+  #     #     - post-checkout
+  #     #     - post-merge
+  #     #   always_run: true
+  #     # - id: submodule-fetch-and-update
+  #     #   name: submodule-fetch-and-update
+  #     #   entry: ./tasks/update_submodules.py
+  #     #   language: python

@@ -1,0 +1,18 @@
+[project]
+name = "pkg-third"
+version = "0.1.0"
+description = "Third package"
+authors = [
+    {name = "John Doe", email = "johndoe@example.org"},
+]
+dependencies = [
+    "pkg-core",
+    "art",
+]
+requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"

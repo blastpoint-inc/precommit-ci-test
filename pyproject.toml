@@ -1,0 +1,134 @@
+[build-system]
+build-backend = "pdm.backend"
+requires = [
+  "pdm-backend",
+]
+
+[project]
+authors = [
+  {email = "joseph.chiocchi@blastpoint.com", name = "Joseph Chiocchi"},
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "pydantic-settings",
+  "typer[all]",
+]
+description = "A Python project testing precommit ci"
+dynamic = [
+  "version",
+]
+keywords = [
+  "copier-template",
+  "full-development-lifecycle",
+  "project-template",
+  "serious-scaffold",
+]
+name = "precommit-ci-test"
+readme = "README.md"
+requires-python = ">=3.12"
+
+[project.scripts]
+precommit-ci-test-cli = "precommit_ci_test.cli:app"
+
+[project.urls]
+homepage = "https://github.com/blastpoint-inc/precommit-ci-test/"
+issue = "https://github.com/blastpoint-inc/precommit-ci-test/issues"
+
+[tool.coverage.report]
+fail_under = 100
+
+[tool.coverage.run]
+source = [
+  "precommit_ci_test",
+]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_untyped_defs = true
+enable_error_code = [
+  "ignore-without-code",
+]
+exclude = [
+  "build",
+]
+no_implicit_optional = true
+show_error_codes = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+doc = [
+  "Sphinx",
+  "autodoc-pydantic",
+  "coverage",
+  "furo",
+  "git-changelog",
+  "mypy[reports]",
+  "myst-parser",
+  "pytest",
+  "sphinx-autobuild",
+  "sphinx-click",
+  "sphinx-design",
+  "sphinx-togglebutton",
+]
+lint = [
+  "mypy",
+  "ruff",
+  "toml-sort",
+]
+test = [
+  "coverage",
+  "pytest",
+]
+
+[tool.pdm.version]
+source = "scm"
+
+[tool.pytest.ini_options]
+addopts = "-l -s --durations=0"
+log_cli = true
+log_cli_level = "info"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_format = "%(asctime)s %(levelname)s %(message)s"
+minversion = "6.0"
+
+[tool.ruff]
+fix = true
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+  "B", # flake8-bugbear
+  "D", # pydocstyle
+  "E", # pycodestyle error
+  "F", # Pyflakes
+  "I", # isort
+  "RUF100", # Unused noqa directive
+  "S", # flake8-bandit
+  "SIM", # flake8-simplify
+  "UP", # pyupgrade
+  "W", # pycodestyle warning
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.tomlsort]
+all = true
+in_place = true
+no_comments = false
+sort_first = ["project", "project.name"]
+spaces_before_inline_comment = 2
+trailing_comma_inline_array = true
