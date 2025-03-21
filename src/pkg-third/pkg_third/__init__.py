@@ -1,3 +1,4 @@
+"""Package Third."""
 from art import text2art
 from mycore import greet
 
