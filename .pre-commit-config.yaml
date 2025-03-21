@@ -1,9 +1,9 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-
 default_install_hook_types:
   - post-checkout
   - post-merge
+  - pre-commit
   - pre-push
 default_stages:
   - manual
@@ -132,4 +132,4 @@ repos:
   #     #   entry: ./tasks/update_submodules.py
   #     #   language: python
 
-ci: {}
+# ci: {}
