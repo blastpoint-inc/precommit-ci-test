@@ -93,6 +93,11 @@ repos:
       - id: ruff-format
         # Avoid running on jypter notebooks
         types_or: [ python, pyi ]
+  - repo: https://github.com/pdm-project/pdm
+    rev: 2.22.3
+    hooks:
+      - id: pdm-sync
+      - id: pdm-lock-check
   - repo: local
     hooks:
       - id: pdm-sync
