@@ -127,3 +127,5 @@ repos:
   #     #   name: submodule-fetch-and-update
   #     #   entry: ./tasks/update_submodules.py
   #     #   language: python
+
+ci: {}
