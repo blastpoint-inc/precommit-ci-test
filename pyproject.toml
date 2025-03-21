@@ -85,12 +85,12 @@ lint = [
   "ruff",
   "toml-sort",
 ]
-pre-commit = [
-  "pre-commit",
-]
 test = [
   "coverage",
   "pytest",
+]
+pre-commit = [
+  "pre-commit",
 ]
 
 [tool.pdm.version]
