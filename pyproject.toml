@@ -89,6 +89,9 @@ test = [
   "coverage",
   "pytest",
 ]
+pre-commit = [
+  "pre-commit",
+]
 
 [tool.pdm.version]
 source = "scm"
