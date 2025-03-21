@@ -1,18 +1,18 @@
 [project]
 name = "pkg-fourth"
-version = "0.1.0"
-description = "Fourth package"
 authors = [
-    {name = "John Doe", email = "johndoe@example.org"},
+  {email = "johndoe@example.org", name = "John Doe"},
 ]
 dependencies = [
-    "pkg-core",
-    "art",
+  "art",
+  "pkg-core",
 ]
-requires-python = ">=3.8"
-readme = "README.md"
+description = "Fourth package"
 license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+version = "0.1.0"
 
 [build-system]
-requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+requires = ["pdm-backend"]

@@ -1,4 +1,5 @@
 """Settings Module."""
+
 import logging
 from logging import getLevelName
 
