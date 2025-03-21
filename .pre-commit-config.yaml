@@ -1,16 +1,16 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
-
 default_install_hook_types:
   - post-checkout
   - post-merge
+  - pre-commit
   - pre-push
 default_stages:
   - manual
   - pre-push
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-docstring-first
@@ -30,6 +30,20 @@ repos:
       - id: sort-simple-yaml
         files: .pre-commit-config.yaml
       - id: trailing-whitespace
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.24.2
+    hooks:
+      - id: toml-sort-fix
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.2
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+        # Avoid running on jypter notebooks
+        types_or: [ python, pyi ]
+      - id: ruff-format
+        # Avoid running on jypter notebooks
+        types_or: [ python, pyi ]
   - repo: local
     hooks:
       - id: pdm-sync
@@ -63,25 +77,26 @@ repos:
           - python
           - pyi
         require_serial: true
-      - id: ruff-format
-        name: ruff-format
-        entry: pdm run python -m ruff format --force-exclude
-        language: system
-        types_or:
-          - python
-          - pyi
-        require_serial: true
-      - id: toml-sort
-        name: toml-sort
-        entry: pdm run toml-sort
-        language: system
-        types:
-          - toml
+      # - id: ruff-format
+      #   name: ruff-format
+      #   entry: pdm run python -m ruff format --force-exclude
+      #   language: system
+      #   types_or:
+      #     - python
+      #     - pyi
+      #   require_serial: true
+      # - id: toml-sort
+      #   name: toml-sort
+      #   entry: pdm run toml-sort
+      #   language: system
+      #   types:
+      #     - toml
       - id: forbidden-files
         name: forbidden files
         entry: found Copier update rejection files; review them and remove them
         language: fail
         files: \.rej$
+
   # - repo: https://github.com/pre-commit/pre-commit-hooks
   #   rev: v4.5.0
   #   hooks:
@@ -126,3 +141,5 @@ repos:
   #     #   name: submodule-fetch-and-update
   #     #   entry: ./tasks/update_submodules.py
   #     #   language: python
+
+# ci: {}
