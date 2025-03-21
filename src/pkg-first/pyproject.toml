@@ -1,15 +1,15 @@
 [project]
 name = "pkg-first"
-version = "0.1.0"
-description = "First package"
 authors = [
-    {name = "John Doe", email = "johndoe@example.org"},
+  {email = "johndoe@example.org", name = "John Doe"},
 ]
 dependencies = ["pkg-core"]
-requires-python = ">=3.8"
-readme = "README.md"
+description = "First package"
 license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+version = "0.1.0"
 
 [build-system]
-requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+requires = ["pdm-backend"]

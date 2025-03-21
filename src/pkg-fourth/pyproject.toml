@@ -1,12 +1,13 @@
 [project]
-name = "pkg-core"
+name = "pkg-fourth"
 authors = [
   {email = "johndoe@example.org", name = "John Doe"},
 ]
 dependencies = [
-  "click",
+  "art",
+  "pkg-core",
 ]
-description = "Core utilities"
+description = "Fourth package"
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.8"
