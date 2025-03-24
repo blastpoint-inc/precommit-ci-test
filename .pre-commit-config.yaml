@@ -48,7 +48,6 @@
   #     #   entry: ./tasks/update_submodules.py
   #     #   language: python
 
-
 default_install_hook_types:
   - post-checkout
   - post-merge
