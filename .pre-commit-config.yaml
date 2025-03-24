@@ -51,7 +51,7 @@
 default_install_hook_types:
   - post-checkout
   - post-merge
-  - pre-commit
+  # - pre-commit
   - pre-push
 default_stages:
   - manual
