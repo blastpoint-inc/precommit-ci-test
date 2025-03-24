@@ -98,8 +98,15 @@ repos:
     hooks:
       - id: pdm-sync
       - id: pdm-lock-check
+
   - repo: local
     hooks:
+      - id: codeowners-sort
+        name: codeowners-sort
+        language: python
+        entry: ./tasks/codeowners_sort.py
+        pass_filenames: false
+        files: ".github/CODEOWNERS"
       # - id: pdm-sync
       #   name: pdm-sync
       #   entry: pdm sync
