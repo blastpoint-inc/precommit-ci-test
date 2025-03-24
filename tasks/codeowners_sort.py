@@ -7,9 +7,7 @@ Usage:
 """
 
 import os
-
 from pathlib import Path
-
 
 PROJECT_ROOT = Path(os.getenv("PDM_PROJECT_ROOT", "."))
 
