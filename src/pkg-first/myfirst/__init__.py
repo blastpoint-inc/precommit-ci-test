@@ -1,4 +1,5 @@
 """Package first."""
+
 from mycore import greet
 
 if __name__ == "__main__":
