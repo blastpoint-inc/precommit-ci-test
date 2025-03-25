@@ -1,4 +1,5 @@
 """Test for settings."""
+
 import os
 
 from precommit_ci_test.settings import global_settings, settings
